@@ -1,0 +1,22 @@
+#!/bin/bash
+
+basedir="/Volumes/Infografia/Fundacion"
+
+days=`echo $(cal) | tail -c 3`
+month=`echo $(cal) | head -c 3`
+year=`echo $(cal) | cut -d' ' -f2`
+
+
+
+for day in `jot $days`
+do
+   folname=$day$month$year
+   echo $folname
+   if [ -d $basedir/$year/$month/$folname ]
+   then
+ echo "La carpeta $folname ya existe. El programa no continuara ejecutandose"
+ exit
+   else
+       mkdir -p "$basedir/$year/$month/$folname"
+   fi
+done
